@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<?xaml-comp compile="true" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
@@ -20,5 +19,45 @@
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
 
+    <Style Class="SubHeader" TargetType="Label">
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <Style Class="CardTitle" TargetType="Label">
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Shadow x:Key="shadow"
+            Brush="#999999"
+            Opacity=".4"
+            Radius="5"
+            Offset="8,5"/>
+    
+    <Style TargetType="RoundRectangle">
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="WidthRequest" Value="200" />
+        <Setter Property="Shadow" Value="{StaticResource shadow}" />
+    </Style>
+
+
+    <DataTemplate x:Key="super_green">
+        <Grid Padding="10">
+
+            <RoundRectangle />
+
+            <VerticalStackLayout Padding="15" Spacing="10">
+
+                <Label StyleClass="LightBlue"
+                   Text="{Binding PendingTasks, StringFormat='{0} Tasks'}"/>
+                <Label StyleClass="DarkBlue, CardTitle"
+                   Text="{Binding CategoryName}"/>
+                <ProgressBar Progress="{Binding Percentage}" ProgressColor="{Binding Color, Converter={StaticResource convertColor}}"/>
+
+            </VerticalStackLayout>
+        </Grid>
+    </DataTemplate>
 
 </ResourceDictionary>
