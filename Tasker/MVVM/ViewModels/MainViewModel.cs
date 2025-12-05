@@ -10,12 +10,19 @@ namespace Tasker.MVVM.ViewModels
     [AddINotifyPropertyChangedInterface]
     public class MainViewModel
     {
-        public ObservableCollection<Category> Categories { get; set; }
-        public ObservableCollection<MyTask> Tasks { get; set; }
+        public ObservableCollection<Category> Categories { get; set; } = new();
+        public ObservableCollection<MyTask> Tasks { get; set; } = new();
 
         public MainViewModel()
         {
             FillData();
+            Tasks.CollectionChanged += Tasks_CollectionChanged;
+            Categories.CollectionChanged += Tasks_CollectionChanged;
+        }
+
+        private void Tasks_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            UpdateData();
         }
 
         private void FillData()
@@ -104,8 +111,12 @@ namespace Tasker.MVVM.ViewModels
 
                 var notComplet = tasks.Where(o => o.Completed is false);
 
+                var totaltasks = tasks.Count();
+
                 c.PendingTasks = notComplet.Count();
                 c.Percentage = (float)completded.Count() / (float)tasks.Count();
+                c.TotalTasks = totaltasks;
+                c.DoneTasks = completded.Count();
             }
 
             foreach(var t in Tasks)

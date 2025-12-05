@@ -50,8 +50,16 @@
 
             <VerticalStackLayout Padding="15" Spacing="10">
 
-                <Label StyleClass="LightBlue"
-                   Text="{Binding PendingTasks, StringFormat='{0} Tasks'}"/>
+                <Label StyleClass="LightBlue">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding DoneTasks}"/>
+                            <Span Text="/"/>
+                            <Span Text="{Binding TotalTasks}"/>
+                            <Span Text=" Tasks"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
                 <Label StyleClass="DarkBlue, CardTitle"
                    Text="{Binding CategoryName}"/>
                 <ProgressBar Progress="{Binding Percentage}" ProgressColor="{Binding Color, Converter={StaticResource convertColor}}"/>
@@ -60,4 +68,27 @@
         </Grid>
     </DataTemplate>
 
+    <Style x:Key="Task" TargetType="Entry">
+        <Setter Property="FontSize" Value="Large" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource LightBlue}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <EllipseGeometry
+        x:Key="circle"
+        Center="50,50"
+        RadiusX="30"
+        RadiusY="30"/>
+
+    <Style x:Key="CircularButton" TargetType="Button">
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="Large" />
+        <Setter Property="HeightRequest" Value="100" />
+        <Setter Property="WidthRequest" Value="100" />
+
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="VerticalOptions" Value="End" />
+        <Setter Property="Clip" Value="{StaticResource circle}" />
+    </Style>
 </ResourceDictionary>
