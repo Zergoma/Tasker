@@ -8,8 +8,8 @@ namespace Tasker.MVVM.ViewModels
 {
     public class NewTaskViewModel
     {
-        public string Task { get; set; }
-        public ObservableCollection<Category> Categories { get; set; }
-        public ObservableCollection<MyTask> Tasks { get; set; }
+        public string Task { get; set; } = "";
+        public ObservableCollection<Category> Categories { get; set; } = new();
+        public ObservableCollection<MyTask> Tasks { get; set; } = new();
     }
 }

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Tasker.MVVM.Models">
 
     <Color x:Key="DarkBlue">#212b4f</Color>
     <Color x:Key="LightBlue">#8a8ba6</Color>
@@ -43,7 +44,7 @@
     </Style>
 
 
-    <DataTemplate x:Key="super_green">
+    <DataTemplate x:Key="super_green" x:DataType="models:Category">
         <Grid Padding="10">
 
             <RoundRectangle />
